@@ -12,9 +12,16 @@ function populatePage (inventory) {
 // invoked after the process is complete
 
 function loadInventory (callback) {
+  console.log("loadInventory function called")
+
   var inventoryLoader = new XMLHttpRequest();
 
-  inventoryLoader.addEventListener("load", function () {
+  inventoryLoader.addEventListener("load", function (event) {
 
+    inventory = JSON.parse(event.target.responseText);
+    console.log(inventory)
   });
+
+  inventoryLoader.open("GET", "inventory.json")
+  inventoryLoader.send()
 }
