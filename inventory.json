@@ -20,6 +20,27 @@
             "year": "1994",
             "price": "4000",
             "description": "This is my truck."
+        },
+        {
+            "make": "BMW",
+            "model": "what",
+            "year": "2006",
+            "price": "8999",
+            "description": "This is an everything."
+        },
+        {
+            "make": "Buick",
+            "model": "Century",
+            "year": "2001",
+            "price": "10000",
+            "description": "This is my blah car."
+        },
+        {
+            "make": "Ford",
+            "model": "Mustang",
+            "year": "1994",
+            "price": "1",
+            "description": "This saslkdfjl my truck."
         }
     ]
 }
