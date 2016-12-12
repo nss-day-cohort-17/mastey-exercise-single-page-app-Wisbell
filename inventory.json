@@ -8,18 +8,18 @@
             "description": "This is an immaculate 2006 Nissan Rogue with only 25000 miles on it. Leather seats, power everything."
         },
         {
-            "make": "Nissan",
-            "model": "Rogue",
-            "year": "2006",
-            "price": "8999",
-            "description": "This is an immaculate 2006 Nissan Rogue with only 25000 miles on it. Leather seats, power everything."
+            "make": "Ford",
+            "model": "Ranger",
+            "year": "2001",
+            "price": "5000",
+            "description": "This is my brothers truck."
         },
         {
-            "make": "Nissan",
-            "model": "Rogue",
-            "year": "2006",
-            "price": "8999",
-            "description": "This is an immaculate 2006 Nissan Rogue with only 25000 miles on it. Leather seats, power everything."
+            "make": "Chevrolet",
+            "model": "S10",
+            "year": "1994",
+            "price": "4000",
+            "description": "This is my truck."
         }
     ]
 }

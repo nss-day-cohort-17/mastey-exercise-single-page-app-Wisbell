@@ -25,3 +25,8 @@ function loadInventory (callback) {
   inventoryLoader.open("GET", "inventory.json")
   inventoryLoader.send()
 }
+
+
+function activateEvents() {
+
+}
