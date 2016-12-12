@@ -15,7 +15,7 @@ function populatePage (inventory) {
 
     // Make a new bootstrap row for the first and every third iteration to make 3 cars per row      rowNumber${currentRowNumber}
     if (i % 3 === 0) {
-      document.querySelectorAll(".container")[1].insertAdjacentHTML('beforeend', `<div class="row"></div>`)
+      document.querySelectorAll(".container")[1].insertAdjacentHTML('beforeend', `<div class="row flexbox"></div>`)
     }
 
     // Append cars to the current row
@@ -26,10 +26,12 @@ function populatePage (inventory) {
             "description": "This is my truck."*/
 
     // Use querySelectorAll to get all rows, but use the currentRowNumber index to grab the current row
-    document.querySelectorAll("div.row")[currentRowNumber].insertAdjacentHTML('beforeend', `<div class="car col-md-4">
-                                                                                      <h3>year make model</h3>
-                                                                                      <p>price</p>
-                                                                                      <p>description</p>
+    document.querySelectorAll("div.row")[currentRowNumber].insertAdjacentHTML('beforeend', `<div class="car col-md-3 col-md-offset-1">
+                                                                                      <h3 class="yearMakeModelInfo">${inventory.cars[i].year} ${inventory.cars[i].make} ${inventory.cars[i].model}</h3>
+                                                                                      <h4 class="priceHeader">Price</h4>
+                                                                                      <p>$${inventory.cars[i].price}</p>
+                                                                                      <h4 class="descriptionHeader">Description</h4>
+                                                                                      <p>${inventory.cars[i].description}</p>
                                                                                     </div`)
 
   }

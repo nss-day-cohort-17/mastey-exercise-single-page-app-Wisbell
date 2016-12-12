@@ -5,7 +5,23 @@ body {
 }
 
 
+.flexbox {
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+}
 
 .car {
     border: solid 1px black;
+
+    /* Make all div columns equal height with flexbox*/
+    flex: 1;
+}
+
+.yearMakeModelInfo {
+    font-weight: bold;
+}
+
+.priceHeader, .descriptionHeader {
+    font-style: italic;
 }
