@@ -15,7 +15,7 @@ function populatePage (inventory) {
 
     // Make a new bootstrap row for the first and every third iteration to make 3 cars per row      rowNumber${currentRowNumber}
     if (i % 3 === 0) {
-      document.querySelector(".container").insertAdjacentHTML('beforeend', `<div class="row">Test new Row</div>`)
+      document.querySelector(".container").insertAdjacentHTML('beforeend', `<div class="row"></div>`)
     }
 
     // Append cars to the current row
@@ -25,7 +25,7 @@ function populatePage (inventory) {
             "price": "4000",
             "description": "This is my truck."*/
 
-    // http://stackoverflow.com/questions/8714090/queryselector-wildcard-element-match
+    // Use querySelectorAll to get all rows, but use the currentRowNumber index to grab the current row
     document.querySelectorAll("div.row")[currentRowNumber].insertAdjacentHTML('beforeend', `<div class="car col-md-4">
                                                                                       <h3>year make model</h3>
                                                                                       <p>price</p>
