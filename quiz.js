@@ -15,7 +15,7 @@ function populatePage (inventory) {
 
     // Make a new bootstrap row for the first and every third iteration to make 3 cars per row      rowNumber${currentRowNumber}
     if (i % 3 === 0) {
-      document.querySelector(".container").insertAdjacentHTML('beforeend', `<div class="row"></div>`)
+      document.querySelectorAll(".container")[1].insertAdjacentHTML('beforeend', `<div class="row"></div>`)
     }
 
     // Append cars to the current row
@@ -37,6 +37,7 @@ function populatePage (inventory) {
   // Now that the DOM is loaded, establish all the event listeners needed
   activateEvents();
 }
+
 
 // Load the inventory and send a callback function to be
 // invoked after the process is complete

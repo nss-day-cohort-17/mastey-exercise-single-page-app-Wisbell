@@ -1,3 +1,11 @@
+/* Prevents body from going under the fixed navigation bar */
+
+body {
+    padding-top: 70px;
+}
+
+
+
 .car {
     border: solid 1px black;
 }
