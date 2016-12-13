@@ -29,6 +29,10 @@ function selectCardTesting (clickedElement, color) {
   if (event.target.className.split(' ')[0] === 'card' || event.target.parentElement.className.split(' ')[0] === "card" ) {
     console.log("Clicked Element", clickedElement);
     console.log("Chosen color", color);
+
+    document.querySelector('input').focus();
+    document.querySelector('input').placeholder = '';
+    //console.log(document.querySelector('input').placeholder)
   }
 }
 
