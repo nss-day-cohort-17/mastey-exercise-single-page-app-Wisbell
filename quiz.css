@@ -20,6 +20,7 @@ body {
 
     /* Make all div columns equal height with flexbox*/
     flex: 1;
+
 }
 
 .cardIsClicked {
@@ -27,6 +28,9 @@ body {
     background-color: tomato;
 
     flex: 1;
+   /* flex-wrap: wrap;
+
+    overflow: auto;*/
 }
 
 .yearMakeModelInfo {
