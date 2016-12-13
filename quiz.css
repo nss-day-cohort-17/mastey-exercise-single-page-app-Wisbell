@@ -15,14 +15,14 @@ body {
     display: flex;
 }
 
-.car {
+.card {
     border: solid 1px black;
 
     /* Make all div columns equal height with flexbox*/
     flex: 1;
 }
 
-.carIsClicked {
+.cardIsClicked {
     border: solid 3px black;
     background-color: tomato;
 

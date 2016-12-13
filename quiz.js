@@ -5,21 +5,43 @@ loadInventory();
 /* When you click on one of the car elements, change the width of the border to a higher value, and change the background
 color to any other color of your choosing.*/
 
+
+function resetCardClass () {
+
+}
+
+
+
 function selectCard (event) {
   console.log("selectCard function called")
 
-  if (event.target.className.split(' ')[0] === "car" || event.target.parentElement.className.split(' ')[0] === "car") {
-    console.log("this event has a class name of car")
+  if (event.target.className.split(' ')[0] === "card") {
+    //|| event.target.parentElement.className.split(' ')[0] === "card") {
+    console.log("this event has a class name of card")
     console.log(event.target)
+    event.target.classList.toggle("cardIsClicked")
   }
 }
+
+
+function selectCardTesting (clickedElement, color) {
+
+  if (event.target.className.split(' ')[0] === 'card' || event.target.parentElement.className.split(' ')[0] === "card" ) {
+    console.log("Clicked Element", clickedElement);
+    console.log("Chosen color", color);
+  }
+}
+
 
 
 
 function activateEvents() {
   console.log("activateEvents function called")
 
-  document.querySelector('body').addEventListener("click", selectCard)
+  //document.querySelector('body').addEventListener("click", selectCard)
+  document.querySelector('body').addEventListener("click", function(event){
+    selectCardTesting(event.target, 'tomato')
+  })
 }
 
 
@@ -27,7 +49,6 @@ function activateEvents() {
 function populatePage (inventory) {
   console.log("populatePage function called")
 
-  var carsInRow = 0;
   var currentRowNumber = -1;
 
   // Loop over the inventory and populate the page
@@ -43,14 +64,13 @@ function populatePage (inventory) {
     // Append cars to the current row
 
     // Use querySelectorAll to get all rows, but use the currentRowNumber index to grab the current row
-    document.querySelectorAll("div.row")[currentRowNumber].insertAdjacentHTML('beforeend', `<div class="car col-md-3 col-md-offset-1">
+    document.querySelectorAll("div.row")[currentRowNumber].insertAdjacentHTML('beforeend', `<div class="card col-md-3 col-md-offset-1">
                                                                                       <h3 class="yearMakeModelInfo">${inventory.cars[i].year} ${inventory.cars[i].make} ${inventory.cars[i].model}</h3>
                                                                                       <h4 class="priceHeader">Price</h4>
                                                                                       <p>$${inventory.cars[i].price}</p>
                                                                                       <h4 class="descriptionHeader">Description</h4>
                                                                                       <p>${inventory.cars[i].description}</p>
                                                                                     </div`)
-    //carsInRow += 1;
   }
 
   // Now that the DOM is loaded, establish all the event listeners needed
