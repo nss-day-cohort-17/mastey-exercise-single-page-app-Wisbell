@@ -8,31 +8,36 @@ color to any other color of your choosing.*/
 
 function resetCardClass () {
 
-}
+  var cardIsClickedNodeList = document.querySelectorAll('.cardIsClicked')
 
-
-
-function selectCard (event) {
-  console.log("selectCard function called")
-
-  if (event.target.className.split(' ')[0] === "card") {
-    //|| event.target.parentElement.className.split(' ')[0] === "card") {
-    console.log("this event has a class name of card")
-    console.log(event.target)
-    event.target.classList.toggle("cardIsClicked")
+  if (cardIsClickedNodeList.length > 0){
+    for(var i = 0; i < cardIsClickedNodeList.length; i++){
+      cardIsClickedNodeList[i].classList.remove('cardIsClicked');
+    }
   }
 }
 
 
-function selectCardTesting (clickedElement, color) {
+function selectCard (clickedElement, color) {
 
-  if (event.target.className.split(' ')[0] === 'card' || event.target.parentElement.className.split(' ')[0] === "card" ) {
+  if (event.target.className.split(' ')[0] === 'card') {
     console.log("Clicked Element", clickedElement);
     console.log("Chosen color", color);
+
+    // reset cardIsClicked class each time so only one is selected
+    resetCardClass();
+
+    //console.log(document.querySelectorAll('.cardIsClicked'))
+
+    event.target.classList.add("cardIsClicked")
 
     document.querySelector('input').focus();
     document.querySelector('input').placeholder = '';
     //console.log(document.querySelector('input').placeholder)
+
+  } else if (event.target.parentElement.className.split(' ')[0] === "card") {
+    console.log("Clicked Element", clickedElement);
+    console.log("Chosen color", color);
   }
 }
 
@@ -44,7 +49,7 @@ function activateEvents() {
 
   //document.querySelector('body').addEventListener("click", selectCard)
   document.querySelector('body').addEventListener("click", function(event){
-    selectCardTesting(event.target, 'tomato')
+    selectCard(event.target, 'tomato')
   })
 }
 
