@@ -1,4 +1,5 @@
 var inventory = [];
+var canRemoveEventListener = false;
 loadInventory();
 
 
@@ -18,27 +19,30 @@ function resetCardClass () {
 }
 
 
+function changeDescription(clickedElement, input) {
+  console.log("input changed")
+  clickedElement.querySelector(".descriptionText").innerText = input.value;
+}
+
+// DO THIS TOMORROW: MAYBE REMOVE OTHER EVENT LISTENER?
+
 function selectCard (clickedElement, color) {
-  // This works
-  // if (event.target.className.split(' ')[0] === 'card') {
-  //   console.log("Clicked Element", clickedElement);
-  //   console.log("Chosen color", color);
 
-  //   // reset cardIsClicked class each time so only one is selected
-  //   resetCardClass();
+  var inputEventListener = function () {
+  changeDescription(clickedElement, input);
+  canRemoveEventListener = true;
+}
 
-  //   // Add new class to most recently clicked card div
-  //   event.target.classList.add("cardIsClicked")
+  var input= document.querySelector('input');
 
-  //   // Put focus on the input field when the card div is selected
-  //   document.querySelector('input').focus();
-  //   document.querySelector('input').placeholder = '';
+  if (canRemoveEventListener) {
+    input.removeEventListener('input', inputEventListener)
+  }
 
-  // }
+  if (clickedElement.className.split(' ')[0] === 'card') {
 
-   if (clickedElement.className.split(' ')[0] === 'card') {
     console.log("Clicked Element", clickedElement);
-    console.log("Chosen color", color);
+    // console.log("Chosen color", color);
 
     // reset cardIsClicked class each time so only one is selected
     resetCardClass();
@@ -47,15 +51,23 @@ function selectCard (clickedElement, color) {
     clickedElement.classList.add("cardIsClicked")
 
     // Put focus on the input field when the card div is selected
-    document.querySelector('input').focus();
-    document.querySelector('input').placeholder = '';
-
+    input.focus();
+    // Clear placeholder text
+    //input.placeholder = '';
+    input.value = clickedElement.querySelector('.descriptionText').innerText;
+    // input.addEventListener('input', function inputEventListener() {
+    //   changeDescription(clickedElement, input);
+    //   canRemoveEventListener = true;
+    // })
+    input.addEventListener('input', inputEventListener);
   }
 
-  else if (event.target.parentElement.className.split(' ')[0] === "card") {
-    console.log("Clicked Element", clickedElement);
-    console.log("Chosen color", color);
-  }
+  // input.removeEventListener('input', inputEventListener)
+
+  // else if (event.target.parentElement.className.split(' ')[0] === "card") {
+  //   console.log("Clicked Element", clickedElement);
+  //   console.log("Chosen color", color);
+  // }
 }
 
 
@@ -64,10 +76,14 @@ function selectCard (clickedElement, color) {
 function activateEvents() {
   console.log("activateEvents function called")
 
-  //document.querySelector('body').addEventListener("click", selectCard)
   document.querySelector('body').addEventListener("click", function(event){
     selectCard(event.target, 'tomato')
   })
+
+  // document.querySelector('input').addEventListener('input', function(event){
+  //     console.log("input changed")
+  //     changeDescription(event.target)
+  //   })
 }
 
 
@@ -95,7 +111,7 @@ function populatePage (inventory) {
                                                                                       <h4 class="priceHeader">Price</h4>
                                                                                       <p>$${inventory.cars[i].price}</p>
                                                                                       <h4 class="descriptionHeader">Description</h4>
-                                                                                      <p>${inventory.cars[i].description}</p>
+                                                                                      <p class="descriptionText">${inventory.cars[i].description}</p>
                                                                                     </div`)
   }
 
