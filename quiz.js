@@ -19,23 +19,40 @@ function resetCardClass () {
 
 
 function selectCard (clickedElement, color) {
+  // This works
+  // if (event.target.className.split(' ')[0] === 'card') {
+  //   console.log("Clicked Element", clickedElement);
+  //   console.log("Chosen color", color);
 
-  if (event.target.className.split(' ')[0] === 'card') {
+  //   // reset cardIsClicked class each time so only one is selected
+  //   resetCardClass();
+
+  //   // Add new class to most recently clicked card div
+  //   event.target.classList.add("cardIsClicked")
+
+  //   // Put focus on the input field when the card div is selected
+  //   document.querySelector('input').focus();
+  //   document.querySelector('input').placeholder = '';
+
+  // }
+
+   if (clickedElement.className.split(' ')[0] === 'card') {
     console.log("Clicked Element", clickedElement);
     console.log("Chosen color", color);
 
     // reset cardIsClicked class each time so only one is selected
     resetCardClass();
 
-    //console.log(document.querySelectorAll('.cardIsClicked'))
+    // Add new class to most recently clicked card div
+    clickedElement.classList.add("cardIsClicked")
 
-    event.target.classList.add("cardIsClicked")
-
+    // Put focus on the input field when the card div is selected
     document.querySelector('input').focus();
     document.querySelector('input').placeholder = '';
-    //console.log(document.querySelector('input').placeholder)
 
-  } else if (event.target.parentElement.className.split(' ')[0] === "card") {
+  }
+
+  else if (event.target.parentElement.className.split(' ')[0] === "card") {
     console.log("Clicked Element", clickedElement);
     console.log("Chosen color", color);
   }
