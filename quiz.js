@@ -1,10 +1,7 @@
 var inventory = [];
-var canRemoveEventListener = false;
+var saveClickedElement = false;
 loadInventory();
 
-
-/* When you click on one of the car elements, change the width of the border to a higher value, and change the background
-color to any other color of your choosing.*/
 
 
 function resetCardClass () {
@@ -19,30 +16,25 @@ function resetCardClass () {
 }
 
 
-function changeDescription(clickedElement, input) {
-  console.log("input changed")
-  clickedElement.querySelector(".descriptionText").innerText = input.value;
+function changeDescription(input) {
+
+  // Check if there is a card selected
+  if (saveClickedElement) {
+    // Modify the current cards description when the input is changed
+    saveClickedElement.innerText = input.value
+  }
 }
 
-// DO THIS TOMORROW: MAYBE REMOVE OTHER EVENT LISTENER?
 
 function selectCard (clickedElement, color) {
 
-  var inputEventListener = function () {
-  changeDescription(clickedElement, input);
-  canRemoveEventListener = true;
-}
+  var input = document.querySelector('input');
 
-  var input= document.querySelector('input');
-
-  if (canRemoveEventListener) {
-    input.removeEventListener('input', inputEventListener)
-  }
-
+  // Checks to see if the body element selected is a card
   if (clickedElement.className.split(' ')[0] === 'card') {
 
-    console.log("Clicked Element", clickedElement);
-    // console.log("Chosen color", color);
+    // Check to see if elemnt is clicked
+    //console.log("Clicked Element", clickedElement);
 
     // reset cardIsClicked class each time so only one is selected
     resetCardClass();
@@ -52,22 +44,30 @@ function selectCard (clickedElement, color) {
 
     // Put focus on the input field when the card div is selected
     input.focus();
-    // Clear placeholder text
-    //input.placeholder = '';
+
+    // Add description  text to the inputs value
     input.value = clickedElement.querySelector('.descriptionText').innerText;
-    // input.addEventListener('input', function inputEventListener() {
-    //   changeDescription(clickedElement, input);
-    //   canRemoveEventListener = true;
-    // })
-    input.addEventListener('input', inputEventListener);
+
+    // save element with description to be used in  changeDescription function
+    saveClickedElement = clickedElement.querySelector('.descriptionText')
   }
 
-  // input.removeEventListener('input', inputEventListener)
+  // Checks to see if the body element selected parents is a card
+  else if (clickedElement.parentElement.className.split(' ')[0] === "card") {
+    resetCardClass();
 
-  // else if (event.target.parentElement.className.split(' ')[0] === "card") {
-  //   console.log("Clicked Element", clickedElement);
-  //   console.log("Chosen color", color);
-  // }
+    // Add new class to most recently clicked card div
+    clickedElement.parentElement.classList.add("cardIsClicked")
+
+    // Put focus on the input field when the card div is selected
+    input.focus();
+
+    // Add description  text to the inputs value
+    input.value = clickedElement.parentElement.querySelector('.descriptionText').innerText;
+
+    // save element with description to be used in  changeDescription function
+    saveClickedElement = clickedElement.parentElement.querySelector('.descriptionText')
+  }
 }
 
 
@@ -76,14 +76,23 @@ function selectCard (clickedElement, color) {
 function activateEvents() {
   console.log("activateEvents function called")
 
-  document.querySelector('body').addEventListener("click", function(event){
+  // Add event listener for when a card is selected
+  document.querySelector('body').addEventListener("click", function clickCard(event){
     selectCard(event.target, 'tomato')
   })
 
-  // document.querySelector('input').addEventListener('input', function(event){
-  //     console.log("input changed")
-  //     changeDescription(event.target)
-  //   })
+  // Add event listener to watch for changing input in the only input field and apply its changes to the current chosen card
+  document.querySelector('input').addEventListener('input', function inputEventListener(event) {
+      changeDescription(event.target)
+  });
+
+  // Removes the default event of the enter key press
+  document.querySelector('input').addEventListener('keypress', function(event) {
+    if (event.keyCode === 13) {
+      event.preventDefault();
+    }
+  })
+
 }
 
 
