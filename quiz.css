@@ -1,0 +1,44 @@
+/* Prevents body from going under the fixed navigation bar */
+
+body {
+    padding-top: 70px;
+}
+
+.row {
+    margin-top: 20px;
+}
+
+
+.flexbox {
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+}
+
+.card {
+    border: solid 1px black;
+
+    /* Make all div columns equal height with flexbox*/
+    flex: 1;
+
+}
+
+.cardIsClicked {
+    border: solid 3px black;
+
+    /* This needs to be changed with javascript*/
+    /*background-color: tomato;*/
+
+    flex: 1;
+   /* flex-wrap: wrap;
+
+    overflow: auto;*/
+}
+
+.yearMakeModelInfo {
+    font-weight: bold;
+}
+
+.priceHeader, .descriptionHeader {
+    font-style: italic;
+}
