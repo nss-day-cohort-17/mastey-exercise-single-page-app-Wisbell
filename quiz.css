@@ -25,7 +25,9 @@ body {
 
 .cardIsClicked {
     border: solid 3px black;
-    background-color: tomato;
+
+    /* This needs to be changed with javascript*/
+    /*background-color: tomato;*/
 
     flex: 1;
    /* flex-wrap: wrap;

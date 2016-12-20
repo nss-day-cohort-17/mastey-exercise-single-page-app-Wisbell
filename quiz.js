@@ -8,11 +8,17 @@ function resetCardClass () {
 
   var cardIsClickedNodeList = document.querySelectorAll('.cardIsClicked')
 
+  /* Reset bg color color of selected card */
+  if(saveClickedElement) {
+    document.querySelectorAll('.cardIsClicked')[0].style.backgroundColor = 'white';
+  }
+
   if (cardIsClickedNodeList.length > 0){
     for(var i = 0; i < cardIsClickedNodeList.length; i++){
       cardIsClickedNodeList[i].classList.remove('cardIsClicked');
     }
   }
+
 }
 
 
@@ -41,6 +47,7 @@ function selectCard (clickedElement, color) {
 
     // Add new class to most recently clicked card div
     clickedElement.classList.add("cardIsClicked")
+    clickedElement.style.backgroundColor = color;
 
     // Put focus on the input field when the card div is selected
     input.focus();
@@ -58,6 +65,7 @@ function selectCard (clickedElement, color) {
 
     // Add new class to most recently clicked card div
     clickedElement.parentElement.classList.add("cardIsClicked")
+    clickedElement.parentElement.style.backgroundColor = color;
 
     // Put focus on the input field when the card div is selected
     input.focus();
@@ -78,7 +86,7 @@ function activateEvents() {
 
   // Add event listener for when a card is selected
   document.querySelector('body').addEventListener("click", function clickCard(event){
-    selectCard(event.target, 'tomato')
+    selectCard(event.target, 'goldenrod')
   })
 
   // Add event listener to watch for changing input in the only input field and apply its changes to the current chosen card
